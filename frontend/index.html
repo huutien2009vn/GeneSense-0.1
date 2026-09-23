@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769df">
+  <meta name="description" content="Hỗ trợ quản lý bệnh mạn tính chủ động từ phả hệ gia đình và theo dõi sinh hiệu liên tục.">
+  <title>GeneSense · Quản lý sức khỏe chủ động</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <div id="loading-screen" class="loading-screen"><img src="/assets/favicon.svg" width="48" height="48" alt=""><p>Đang mở không gian sức khỏe của bạn…</p><button id="retry-boot" class="btn outline hidden">Thử lại</button></div>
+
+  <section id="login-screen" class="login-screen hidden" aria-labelledby="login-title">
+    <div class="login-story">
+      <a class="brand" href="/"><img src="/assets/favicon.svg" alt="" width="42" height="42"><strong>GeneSense<span>CHĂM SÓC CHỦ ĐỘNG</span></strong></a>
+      <div class="story-main"><span class="eyebrow">QUẢN LÝ BỆNH MẠN TÍNH CHỦ ĐỘNG</span>
+        <h1>Hiểu nguy cơ gia đình.<br>Theo dõi sức khỏe <em>mỗi ngày.</em></h1>
+        <p>Kết hợp phả hệ di truyền, thể trạng và sinh hiệu từ thiết bị không dây để hỗ trợ bạn hành động sớm hơn.</p>
+        <div class="story-benefits">
+          <div><span class="icon-box" data-icon="family"></span><div><strong>Phân tích phả hệ</strong><p>Kết nối tiền sử F1, F2 từ cả bên nội và bên ngoại.</p></div></div>
+          <div><span class="icon-box" data-icon="bluetooth"></span><div><strong>Theo dõi sinh hiệu</strong><p>Nhận chỉ số liên tục từ thiết bị đo kết nối không dây.</p></div></div>
+          <div><span class="icon-box" data-icon="sparkles"></span><div><strong>AI hỗ trợ tổng hợp</strong><p>Diễn giải ngữ cảnh dễ hiểu, luôn để bạn kiểm tra trước khi lưu.</p></div></div>
+        </div>
+      </div>
+      <span class="story-footer">GENESENSE AI CORE <span>Chủ động mỗi ngày</span></span>
+    </div>
+    <div class="login-panel"><div class="login-card">
+      <span class="welcome-icon" data-icon="sun"></span>
+      <span class="eyebrow">CHÀO MỪNG BẠN</span>
+      <h2 id="login-title">Bắt đầu từ bạn.</h2>
+      <p>Đăng nhập để tạo hồ sơ riêng và tiếp tục theo dõi sức khỏe trên các thiết bị của bạn.</p>
+      <button id="google-login" class="btn google-button" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M43.6 24.5c0-1.4-.1-2.8-.4-4.1H24v7.8h11a9.4 9.4 0 0 1-4.1 6.2v5h6.6c3.8-3.5 6.1-8.7 6.1-14.9Z"/><path fill="#34A853" d="M24 44c5.5 0 10.1-1.8 13.5-4.9l-6.6-5c-1.8 1.2-4.1 1.9-6.9 1.9-5.3 0-9.9-3.6-11.5-8.4H5.7v5.2A20.4 20.4 0 0 0 24 44Z"/><path fill="#FBBC05" d="M12.5 27.6A12 12 0 0 1 12 24c0-1.3.2-2.5.6-3.6v-5.2H5.7A20 20 0 0 0 4 24c0 3.2.8 6.2 2.1 8.8l6.4-5.2Z"/><path fill="#EA4335" d="M24 12c3 0 5.7 1 7.8 3.1l5.8-5.8A19.7 19.7 0 0 0 24 4c-7.8 0-14.5 4.5-17.9 11.2l6.4 5.2C14.1 15.6 18.7 12 24 12Z"/></svg>Tiếp tục với Google</button>
+      <div class="google-trust"><span data-icon="shield"></span><span>Đăng nhập an toàn · GeneSense không nhận mật khẩu Google của bạn</span></div>
+      <p id="login-message" class="inline-message hidden" role="status"></p>
+      <div id="demo-entry" class="demo-entry hidden"><span>Muốn tìm hiểu trước?</span><button id="demo-login" class="link-button">Khám phá với hồ sơ thử <span data-icon="arrow"></span></button><small>Phiên thử riêng, dùng dữ liệu giả định.</small></div>
+      <div class="login-next"><span data-icon="sparkles"></span><p>Lần đầu đến đây? Chúng mình sẽ hỏi vài câu ngắn để hiểu bạn hơn. Khoảng 3 phút.</p></div>
+      <p class="legal-note">Hỗ trợ theo dõi sức khỏe, không thay thế chẩn đoán của bác sĩ.</p>
+    </div></div>
+  </section>
+
+  <section id="onboarding-screen" class="onboarding-screen hidden" aria-labelledby="onboarding-title">
+    <header class="onboarding-header"><a class="brand" href="/"><img src="/assets/favicon.svg" width="38" height="38" alt=""><strong>GeneSense</strong></a><button class="link-button" id="onboarding-exit">Đăng xuất</button></header>
+    <main class="onboarding-layout">
+      <aside class="onboarding-aside"><span class="eyebrow">HỒ SƠ CỦA RIÊNG BẠN</span><h1 id="onboarding-title">Cùng hiểu thêm<br>về sức khỏe của bạn.</h1><p>Chia sẻ những gì bạn biết. Bạn luôn có thể bổ sung hoặc thay đổi sau.</p>
+        <ol class="step-list"><li data-step-indicator="0"><span>1</span><div><strong>Về bạn</strong><small>Sức khỏe & thói quen</small></div></li><li data-step-indicator="1"><span>2</span><div><strong>Gia đình gần gũi</strong><small>Bố, mẹ & anh chị em</small></div></li><li data-step-indicator="2"><span>3</span><div><strong>Hai bên nội, ngoại</strong><small>Câu chuyện từ gia đình</small></div></li></ol>
+        <div class="aside-note"><span data-icon="shield"></span><p>Thông tin này chỉ hiển thị trong tài khoản của bạn. Không cần ghi tên người thân.</p></div>
+      </aside>
+      <form id="onboarding-form" class="onboarding-form" novalidate>
+        <div class="step-progress"><span id="step-caption">BƯỚC 1 / 3</span><progress id="onboarding-progress" value="1" max="3" aria-label="Tiến độ khai báo"></progress></div>
+        <section data-step="0">
+          <h2>Bạn muốn chúng mình gọi là gì?</h2><p class="muted">Bắt đầu bằng vài thông tin cơ bản để việc theo dõi phù hợp với bạn.</p>
+          <div class="field-grid">
+            <label class="full">Tên hiển thị<input id="display-name" maxlength="100" required autocomplete="nickname" placeholder="Tên bạn muốn được gọi"></label>
+            <label>Tuổi<input id="age" type="number" min="1" max="120" required placeholder="Ví dụ: 35"></label>
+            <label>Giới tính<select id="sex" required><option value="">Chọn</option><option value="female">Nữ</option><option value="male">Nam</option><option value="other">Khác / không khai báo</option></select></label>
+            <label>Chiều cao (cm)<input id="height" type="number" min="80" max="250" step=".1" required placeholder="Ví dụ: 165"></label>
+            <label>Cân nặng (kg)<input id="weight" type="number" min="20" max="350" step=".1" required placeholder="Ví dụ: 60"></label>
+          </div>
+          <p class="bmi-note" id="bmi-output">BMI sẽ được tính từ chiều cao và cân nặng.</p>
+          <label class="block-label">Gần đây sức khỏe của bạn thế nào?<textarea id="personal-notes" rows="3" maxlength="2000" placeholder="Ví dụ: Tôi ít vận động, đôi lúc mệt mỏi và muốn theo dõi huyết áp."></textarea><small>Bạn có thể kể thêm bệnh đã biết hoặc điều muốn theo dõi. Có thể bỏ qua.</small></label>
+          <fieldset class="chip-field"><legend>Bệnh đã được bác sĩ chẩn đoán <small>(nếu có)</small></legend><div id="personal-conditions" class="chips"></div></fieldset>
+          <div class="field-grid habits"><label>Vận động mỗi tuần (phút)<input id="activity" type="number" min="0" max="3000" value="0"></label><label class="check-label"><input type="checkbox" id="smoker"><span>Tôi đang hút thuốc</span></label></div>
+        </section>
+        <section data-step="1" hidden>
+          <h2>Gia đình gần gũi của bạn thì sao?</h2><p class="muted">Bố, mẹ hoặc anh chị em ruột có bệnh nào đã được chẩn đoán không?</p>
+          <div id="family-immediate" class="family-list"></div>
+          <div class="soft-note"><span data-icon="info"></span><p>“Chưa rõ” khác với “Không có bệnh đã biết”. Bạn có thể hỏi lại gia đình và cập nhật sau.</p></div>
+        </section>
+        <section data-step="2" hidden>
+          <h2>Thêm một chút về bên nội, bên ngoại.</h2><p class="muted">Nếu có thể, hãy kể sơ bộ những bệnh thường gặp trong mỗi bên gia đình.</p>
+          <div class="lineage-heading"><span class="icon-box" data-icon="family"></span><div><h3>Bên nội</h3><span>Gia đình phía bố</span></div></div>
+          <div id="family-paternal" class="family-list"></div>
+          <label class="block-label">Bạn biết thêm điều gì về bên nội?<textarea id="paternal-notes" rows="2" maxlength="2000" placeholder="Ví dụ: Một số cô chú bên nội có huyết áp cao."></textarea></label>
+          <div class="lineage-heading maternal"><span class="icon-box" data-icon="family"></span><div><h3>Bên ngoại</h3><span>Gia đình phía mẹ</span></div></div>
+          <div id="family-maternal" class="family-list"></div>
+          <label class="block-label">Bạn biết thêm điều gì về bên ngoại?<textarea id="maternal-notes" rows="2" maxlength="2000" placeholder="Ví dụ: Tôi chưa rõ tiền sử bên ngoại."></textarea></label>
+          <div class="consent-section">
+            <label class="check-label"><input id="health-consent" type="checkbox" required><span>Tôi đồng ý lưu thông tin sức khỏe đã khai báo để theo dõi trong tài khoản này.</span></label>
+            <label class="check-label"><input id="ai-consent" type="checkbox"><span>Cho phép AI hỗ trợ diễn giải kết quả <small>Tùy chọn. Gửi chỉ số, thể trạng và các bệnh đã chọn đến Google Gemini; không gửi tên, email hoặc ghi chú tự do. Bạn có thể tắt bất kỳ lúc nào.</small></span></label>
+          </div>
+        </section>
+        <p id="onboarding-error" class="inline-message error hidden" role="alert"></p>
+        <footer class="wizard-actions"><button id="step-back" class="btn outline" type="button">Quay lại</button><span id="step-footnote">Có thể cập nhật sau</span><button id="step-next" class="btn primary" type="submit">Tiếp tục <span data-icon="arrow"></span></button></footer>
+      </form>
+    </main>
+  </section>
+
+  <div id="app-screen" class="app-shell hidden">
+    <aside class="sidebar"><a class="brand" href="#dashboard"><img src="/assets/favicon.svg" width="40" height="40" alt=""><strong>GeneSense<span>CHĂM SÓC CHỦ ĐỘNG</span></strong></a>
+      <span class="nav-caption">KHÔNG GIAN CỦA BẠN</span>
+      <nav class="main-nav" aria-label="Điều hướng chính">
+        <button data-nav="dashboard" class="active"><span data-icon="grid"></span>Hôm nay</button>
+        <button data-nav="records"><span data-icon="document"></span>Hồ sơ sức khỏe</button>
+        <button data-nav="history"><span data-icon="history"></span>Lịch sử theo dõi</button>
+        <button data-nav="profile"><span data-icon="family"></span>Hồ sơ & gia đình</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="side-reminder"><span data-icon="leaf"></span><strong>Từng chút, mỗi ngày.</strong><p>Theo dõi đều đặn giúp bạn hiểu cơ thể mình hơn.</p></div><button class="account-button" data-nav="profile"><span class="avatar" data-avatar></span><span><strong data-user-name></strong><small data-account-type>Tài khoản của bạn</small></span><span data-icon="chevron"></span></button><button id="logout" class="logout-button"><span data-icon="logout"></span>Đăng xuất</button></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><div class="breadcrumbs"><span>Không gian sức khỏe</span><span>/</span><strong id="page-name">Hôm nay</strong></div><div class="topbar-right"><span id="today-date"></span><span class="account-state"><span data-icon="shield"></span>Hồ sơ riêng tư</span><button class="avatar" data-avatar data-nav="profile" aria-label="Mở tài khoản"></button></div></header>
+      <main class="main-content">
+        <div id="demo-banner" class="demo-banner hidden"><span data-icon="info"></span><span>Bạn đang dùng hồ sơ thử. Các dữ liệu mẫu không phản ánh sức khỏe thực tế.</span></div>
+        <section id="dashboard-view" class="view">
+          <div class="page-heading"><div><span class="eyebrow">TRUNG TÂM THEO DÕI CHỦ ĐỘNG</span><h1 id="greeting">Chào bạn <span class="greeting-sun" data-icon="sun"></span></h1><p>Những tín hiệu quan trọng giúp bạn chủ động quản lý sức khỏe mỗi ngày.</p></div><button class="btn primary" id="new-measurement"><span data-icon="plus"></span>Ghi chỉ số mới</button></div>
+          <div class="integration-flow" aria-label="Ba nguồn dữ liệu sức khỏe được tích hợp">
+            <div class="flow-node"><span class="flow-icon" data-icon="family"></span><span><small>NỀN TẢNG</small><strong>Phả hệ gia đình</strong></span></div>
+            <span class="flow-link" aria-hidden="true"><i></i></span>
+            <div class="flow-node"><span class="flow-icon" data-icon="bluetooth"></span><span><small>LIÊN TỤC</small><strong>Sinh hiệu không dây</strong></span></div>
+            <span class="flow-link" aria-hidden="true"><i></i></span>
+            <div class="flow-node highlight"><span class="flow-icon" data-icon="sparkles"></span><span><small>TỔNG HỢP</small><strong>AI hỗ trợ chủ động</strong></span></div>
+          </div>
+          <div class="home-grid">
+            <article class="card overview-card"><div class="card-title"><h2>Tổng quan sức khỏe</h2><span id="result-date" class="subtle">Chưa có lần theo dõi</span></div>
+              <div class="overview-body"><div id="risk-visual" class="risk-visual empty"><span data-icon="heart"></span><strong id="risk-score">—</strong><small id="risk-score-label">Chưa đánh giá</small></div><div class="overview-copy"><span id="risk-status" class="badge neutral">Sẵn sàng bắt đầu</span><h3 id="risk-title">Lắng nghe cơ thể, từ hôm nay.</h3><p id="risk-summary">Ghi chỉ số từ máy đo của bạn để nhận bản tổng quan đầu tiên.</p><button class="link-button" id="measure-from-summary">Bắt đầu theo dõi <span data-icon="arrow"></span></button></div></div>
+              <div id="result-alerts" class="result-alerts" aria-live="polite"></div>
+              <details id="score-details" class="score-details hidden"><summary>Điều gì tạo nên kết quả này?</summary><div class="score-grid"><div><span>Tiền sử gia đình</span><strong id="pgrs-score">—</strong><progress id="pgrs-progress" max="100" value="0"></progress></div><div><span>Thể trạng</span><strong id="brs-score">—</strong><progress id="brs-progress" max="100" value="0"></progress></div><div><span>Chỉ số sức khỏe</span><strong id="vital-score">—</strong><progress id="vital-progress" max="100" value="0"></progress></div></div><p>Điểm sàng lọc minh họa, không phải xác suất mắc bệnh hay kết quả xét nghiệm gen.</p></details>
+            </article>
+            <article class="quick-care-card"><span class="eyebrow">THAO TÁC NHANH</span><h2>Bạn muốn làm gì?</h2><button class="quick-action primary-action" data-open-measurement><span class="icon-box" data-icon="heart"></span><span><strong>Ghi chỉ số</strong><small>Nhịp tim, huyết áp, SpO₂</small></span><span data-icon="chevron"></span></button><button class="quick-action" data-open-upload><span class="icon-box" data-icon="scan"></span><span><strong>Quét hồ sơ sức khỏe</strong><small>AI trích xuất sau khi bạn xác nhận</small></span><span data-icon="chevron"></span></button><button class="quick-action" id="home-connect-device"><span class="icon-box" data-icon="bluetooth"></span><span><strong>Kết nối thiết bị</strong><small>Nhận chỉ số qua Bluetooth</small></span><span data-icon="chevron"></span></button></article>
+          </div>
+          <div class="section-heading"><div><h2>Chỉ số gần nhất</h2><p id="measurement-context">Chưa có dữ liệu. Bạn có thể nhập từ máy đo hoặc kết nối thiết bị.</p></div></div>
+          <div id="metric-grid" class="metric-grid"></div>
+          <p class="medical-note"><span data-icon="info"></span>Kết quả hỗ trợ theo dõi, không thay thế chẩn đoán của bác sĩ. Nếu có triệu chứng nghiêm trọng, hãy tìm hỗ trợ y tế ngay.</p>
+        </section>
+
+        <section id="records-view" class="view hidden">
+          <div class="page-heading"><div><span class="eyebrow">HỒ SƠ SỨC KHỎE CỦA BẠN</span><h1>Tài liệu đã ghi nhận</h1><p>Lưu phần thông tin bạn đã xem lại; ảnh gốc không được lưu trên GeneSense.</p></div><button class="btn primary" id="upload-record"><span data-icon="scan"></span>Phân tích ảnh hồ sơ</button></div>
+          <article class="record-intro"><div><span class="icon-box" data-icon="sparkles"></span><div><strong>AI đọc, bạn quyết định lưu</strong><p>Chọn ảnh kết quả xét nghiệm, đơn thuốc hoặc giấy khám. Kiểm tra phần AI trích xuất trước khi ghi vào hồ sơ.</p></div></div><span class="privacy-pill"><span data-icon="shield"></span>Không lưu ảnh gốc</span></article>
+          <div id="medical-record-list" class="medical-record-list"></div>
+        </section>
+
+        <section id="history-view" class="view hidden">
+          <div class="page-heading"><div><span class="eyebrow">NHẬT KÝ CỦA BẠN</span><h1>Lịch sử theo dõi</h1><p>Những thay đổi nhỏ, được lưu lại để bạn dễ nhìn lại.</p></div><button class="btn outline" id="refresh-history"><span data-icon="refresh"></span>Làm mới</button></div>
+          <div class="lower-grid"><article class="card chart-card"><div class="card-title"><div><h2>Nhìn lại những thay đổi</h2><p id="chart-context">Các lần theo dõi gần đây</p></div><label class="visually-hidden" for="chart-metric">Chỉ số trên biểu đồ</label><select id="chart-metric"><option value="heart_rate">Nhịp tim</option><option value="systolic">Huyết áp</option><option value="spo2">SpO₂</option><option value="glucose">Đường huyết</option></select></div><div class="chart-wrap"><canvas id="vital-chart" role="img" aria-label="Biểu đồ sinh hiệu"></canvas><div id="chart-empty" class="chart-empty"><span data-icon="chart"></span><strong>Mỗi lần đo là một mảnh ghép.</strong><p>Biểu đồ xuất hiện khi bạn bắt đầu ghi chỉ số.</p></div></div><div class="chart-bottom"><span><i></i>Chỉ số được ghi nhận</span></div></article>
+          <article class="card tips-card"><div class="card-title"><h2><span data-icon="sparkles"></span>Dành cho bạn</h2><span class="badge blue">Gợi ý</span></div><div id="tip-list"></div><p id="follow-up" class="follow-up">Lời khuyên sẽ được điều chỉnh sau mỗi lần đánh giá.</p></article></div>
+          <article class="card history-card"><div class="card-title"><h2>Các lần ghi nhận</h2><label class="history-filter">Hiển thị<select id="history-filter"><option value="all">Tất cả</option><option value="real">Dữ liệu của tôi</option><option value="simulation">Dữ liệu mẫu</option></select></label></div><div id="history-list"></div></article>
+          <article class="card feedback-card"><div><span class="icon-box" data-icon="message"></span><h2>Trải nghiệm của bạn thế nào?</h2><p>Chia sẻ để GeneSense có thể đồng hành tốt hơn.</p></div><form id="feedback-form"><fieldset class="rating"><legend>Mức độ hài lòng</legend><div id="rating-buttons"></div></fieldset><label>Góp ý của bạn<textarea id="feedback-message" rows="2" maxlength="2000" placeholder="Điều gì hữu ích, điều gì cần cải thiện?"></textarea></label><button class="btn primary" type="submit">Gửi góp ý <span data-icon="arrow"></span></button></form></article>
+        </section>
+
+        <section id="profile-view" class="view hidden"><div class="page-heading"><div><span class="eyebrow">CÂU CHUYỆN SỨC KHỎE CỦA BẠN</span><h1>Hồ sơ & gia đình</h1><p>Bạn luôn có thể bổ sung khi biết thêm thông tin mới.</p></div><button id="edit-profile" class="btn primary"><span data-icon="edit"></span>Cập nhật hồ sơ</button></div><div id="profile-content"></div></section>
+      </main>
+    </div>
+    <nav class="mobile-nav" aria-label="Điều hướng di động"><button data-nav="dashboard"><span data-icon="grid"></span>Hôm nay</button><button data-nav="records"><span data-icon="document"></span>Hồ sơ sức khỏe</button><button data-nav="history"><span data-icon="history"></span>Lịch sử</button><button data-nav="profile"><span data-icon="family"></span>Gia đình</button></nav>
+  </div>
+
+  <dialog id="measurement-dialog"><div class="dialog-heading"><div><span class="eyebrow">MỘT LẦN QUAN TÂM BẢN THÂN</span><h2>Ghi chỉ số mới</h2></div><button class="icon-button" data-close="measurement-dialog" aria-label="Đóng"><span data-icon="close"></span></button></div>
+    <div class="measurement-tabs" role="group" aria-label="Cách ghi chỉ số"><button class="active" data-measure-mode="manual">Nhập từ máy đo</button><button data-measure-mode="device">Kết nối thiết bị</button></div>
+    <div id="manual-panel"><p class="muted">Nhập chỉ số vừa đo. Có thể để trống những chỉ số bạn chưa có.</p><form id="measurement-form"><div class="field-grid"><label>Nhịp tim (bpm)<input name="heart_rate" type="number" min="20" max="260" step=".1" placeholder="Ví dụ: 72"></label><label>SpO₂ (%)<input name="spo2" type="number" min="50" max="100" step=".1" placeholder="Ví dụ: 98"></label><label>Huyết áp tâm thu (mmHg)<input name="systolic" type="number" min="50" max="260" step=".1" placeholder="Số trên, ví dụ: 120"></label><label>Huyết áp tâm trương (mmHg)<input name="diastolic" type="number" min="30" max="180" step=".1" placeholder="Số dưới, ví dụ: 80"></label><label class="full">Đường huyết (mg/dL)<input name="glucose" type="number" min="20" max="600" step=".1" placeholder="Ví dụ: 105"></label></div><p class="subtle">Đường huyết cần đối chiếu với thời điểm ăn và hướng dẫn của bác sĩ.</p><button class="btn primary full-width" type="submit">Lưu & xem tổng quan <span data-icon="arrow"></span></button></form></div>
+    <div id="device-panel" hidden><div class="device-state"><span class="icon-box" data-icon="bluetooth"></span><h3 id="device-name">Kết nối với máy đo của bạn</h3><p id="device-message">Bật Bluetooth, đặt thiết bị ở gần và chọn kết nối.</p></div><div class="device-actions"><button class="btn primary" id="connect-ble"><span data-icon="bluetooth"></span>Kết nối Bluetooth</button><button class="btn outline" id="simulate-ble">Thử với dữ liệu mẫu</button></div><div id="device-values" class="device-values hidden"></div><p id="device-source-note" class="subtle">Thiết bị cần hỗ trợ chia sẻ dữ liệu qua Bluetooth. Nếu không kết nối được, bạn có thể nhập chỉ số thủ công.</p><button class="btn primary full-width" id="save-device" disabled>Lưu các chỉ số vừa nhận</button><button class="link-button full-width hidden" id="disconnect-device">Dừng kết nối</button></div>
+    <p id="measurement-error" class="inline-message error hidden" role="alert"></p>
+  </dialog>
+  <dialog id="result-dialog"><div class="dialog-heading"><h2>Chi tiết lần theo dõi</h2><button class="icon-button" data-close="result-dialog" aria-label="Đóng"><span data-icon="close"></span></button></div><div id="result-detail"></div></dialog>
+  <dialog id="medical-upload-dialog" class="medical-upload-dialog"><div class="dialog-heading"><div><span class="eyebrow">AI HỖ TRỢ TRÍCH XUẤT</span><h2>Thêm ảnh hồ sơ sức khỏe</h2></div><button class="icon-button" data-close="medical-upload-dialog" aria-label="Đóng"><span data-icon="close"></span></button></div>
+    <div id="upload-stage"><p class="muted">Chụp rõ toàn bộ tài liệu, tránh lóa và che thông tin định danh nếu không cần thiết.</p><label class="document-drop" for="medical-document-file"><input id="medical-document-file" type="file" accept="image/jpeg,image/png,image/webp"><span class="upload-illustration" data-icon="scan"></span><strong>Chọn ảnh từ thiết bị</strong><small>JPG, PNG hoặc WebP · tối đa 8 MB</small><img id="document-preview" class="hidden" alt="Ảnh hồ sơ đã chọn"></label>
+      <label class="check-label upload-consent"><input id="document-ai-consent" type="checkbox"><span>Tôi đồng ý gửi ảnh này đến <strong id="document-ai-provider">Google Gemini</strong> để AI trích xuất thông tin. <small>Ảnh có thể chứa dữ liệu sức khỏe nhạy cảm. GeneSense không lưu ảnh gốc; chỉ lưu phần bạn xác nhận.</small></span></label>
+      <p id="document-error" class="inline-message error hidden" role="alert"></p><button id="analyze-document" class="btn primary full-width" disabled><span data-icon="sparkles"></span>Phân tích ảnh bằng AI</button>
+    </div>
+    <div id="review-stage" class="hidden"><div class="review-heading"><span class="icon-box success" data-icon="check"></span><div><h3>Kiểm tra trước khi lưu</h3><p>AI có thể đọc sai. Hãy đối chiếu với ảnh gốc hoặc nhân viên y tế.</p></div></div><div id="document-analysis-preview"></div><label class="check-label confirm-record"><input id="confirm-medical-record" type="checkbox"><span>Tôi đã xem lại và muốn ghi phần trích xuất này vào hồ sơ.</span></label><p id="record-save-error" class="inline-message error hidden" role="alert"></p><div class="dialog-actions"><button id="analyze-another" class="btn outline">Chọn ảnh khác</button><button id="save-medical-record" class="btn primary" disabled><span data-icon="check"></span>Lưu vào hồ sơ</button></div></div>
+  </dialog>
+  <div id="toast-region" class="toast-region" role="status" aria-live="polite"></div>
+  <noscript>Vui lòng bật JavaScript để đăng nhập và sử dụng GeneSense.</noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

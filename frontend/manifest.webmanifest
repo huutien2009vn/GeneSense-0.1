@@ -1,0 +1,13 @@
+{
+  "name": "GeneSense AI Core",
+  "short_name": "GeneSense",
+  "description": "Theo dõi sinh hiệu và sàng lọc nguy cơ sức khỏe theo ba tầng.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f7fb",
+  "theme_color": "#0b6bcb",
+  "lang": "vi",
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,13 @@
+.env
+.venv/
+.venv-old/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+healthpredict.db
+*.db-shm
+*.db-wal
+HealthPredictAI-Core-*.zip
+.DS_Store
+.sites-runtime/
